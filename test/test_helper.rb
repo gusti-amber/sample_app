@@ -12,5 +12,9 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  include ApplicationHelper
+  include ApplicationHelper #リスト 8.40でこの箇所が消去されていたので、Renderが失敗する原因はここかも
+
+  def is_logged_in?
+    !session[:user_id].nil?
+  end
 end
