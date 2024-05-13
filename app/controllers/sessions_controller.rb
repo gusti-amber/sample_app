@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user &.authenticate(params[:session][:password])
       # ユーザーログイン後にユーザー情報のページにリダイレクトする
       reset_session      # セッション固定攻撃への対策
-      remember user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
       redirect_to user
     else
